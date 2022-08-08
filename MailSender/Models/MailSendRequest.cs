@@ -3,8 +3,7 @@
 namespace MailSender.Models
 {
     public abstract class MailSendRequest
-    {
-        public virtual MailSettings Settings { get; set; }
+    { 
         public List<Receiver> Receivers { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
