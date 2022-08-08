@@ -9,6 +9,7 @@
 		<PackageTags>MailSender,Ledbim,EmailService,Mailkit</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<RepositoryUrl>https://github.com/yasinilkalp/MailSender</RepositoryUrl>
+		<PackageIcon>icon.png</PackageIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
