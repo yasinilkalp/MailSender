@@ -5,6 +5,10 @@ namespace MailSender.Models
 {
     public class MailSendRequest
     {
+        public MailSendRequest()
+        {
+
+        }
         public MailSendRequest(List<Receiver> receivers, string subject, string body)
         {
             Receivers = receivers;
