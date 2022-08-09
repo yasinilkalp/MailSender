@@ -5,6 +5,7 @@
 		<PackageId>Ledbim.MailSender</PackageId>
 		<Version>1.0.6</Version>
 		<Authors>Yasin ilkalp Arabacı</Authors>
+		<Company>KodEkibi</Company>
 		<Description>Mail gönderimi için kullanılacaktır.</Description>
 		<PackageTags>MailSender,Ledbim,EmailService,Mailkit</PackageTags>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
