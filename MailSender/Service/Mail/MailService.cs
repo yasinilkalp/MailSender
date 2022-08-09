@@ -3,7 +3,7 @@ using MailSender.Models;
 using MimeKit;
 using System.Threading.Tasks;
 
-namespace MailSender.Service
+namespace MailSender.Service.Mail
 {
     public class MailService : IMailService
     {
