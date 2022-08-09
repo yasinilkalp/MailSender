@@ -1,9 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace MailSender.Models
 {
-    public abstract class MailSendRequest
-    { 
+    public class MailSendRequest
+    {
+        public MailSendRequest(List<Receiver> receivers, string subject, string body)
+        {
+            Receivers = receivers;
+            Subject = subject;
+            Body = body;
+        }
         public List<Receiver> Receivers { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }

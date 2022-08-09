@@ -2,8 +2,8 @@
 
 namespace MailSender.Service.Template
 {
-    public interface ITemplateService<T>
+    public interface ITemplateService
     {
-        Task<string> CreateMessageContent(string body, T data);
+        Task<string> CreateMessageContent(string body, string modelJson);
     }
 }

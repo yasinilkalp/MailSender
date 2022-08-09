@@ -9,7 +9,7 @@ namespace MailSender
         public static IServiceCollection AddMailSender(this IServiceCollection services)
         { 
             services.AddSingleton<IMailService, MailService>();
-            services.AddSingleton(typeof(ITemplateService<>), typeof(TemplateService<>));
+            services.AddSingleton<ITemplateService, TemplateService>();
 
             return services;
         }
