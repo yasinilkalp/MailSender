@@ -1,6 +1,7 @@
 ﻿using MailKit.Net.Smtp;
 using MailSender.Models;
 using MimeKit;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace MailSender.Service.Mail
@@ -35,6 +36,12 @@ namespace MailSender.Service.Mail
                     TextBody = request.Body
                 };
 
+                request.Attachments.ForEach(file =>
+                {
+                    string fileName = Path.GetFileName(file.FileName);
+                    emailBodyBuilder.Attachments.Add(fileName, file.OpenReadStream());
+                });
+
                 message.Body = emailBodyBuilder.ToMessageBody();
 
 
@@ -51,5 +58,6 @@ namespace MailSender.Service.Mail
                 return MailResponse.Error(ex.Message);
             }
         }
+
     }
 }

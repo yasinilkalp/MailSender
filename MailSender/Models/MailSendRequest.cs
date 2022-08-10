@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace MailSender.Models
@@ -15,13 +17,18 @@ namespace MailSender.Models
             Subject = subject;
             Body = body;
         }
+        public MailSendRequest(List<Receiver> receivers, string subject, string body, List<IFormFile> attachments)
+        {
+            Receivers = receivers;
+            Subject = subject;
+            Body = body;
+            Attachments = attachments;
+        }
+
         public List<Receiver> Receivers { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
+        public List<IFormFile> Attachments { get; set; }
     }
-    public class Receiver
-    {
-        public string Name { get; set; }
-        public string Address { get; set; }
-    }
+
 }

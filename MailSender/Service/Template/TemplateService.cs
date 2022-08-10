@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MailSender.Service.Template
@@ -10,6 +8,8 @@ namespace MailSender.Service.Template
     {
         public Task<string> CreateMessageContent(string body, string modelJson)
         {
+            if (string.IsNullOrEmpty(modelJson)) return Task.FromResult(body);
+
             var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(modelJson); 
               
             foreach (var property in dict)
