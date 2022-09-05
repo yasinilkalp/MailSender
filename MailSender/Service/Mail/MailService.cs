@@ -1,4 +1,5 @@
 ﻿using MailKit.Net.Smtp;
+using MailKit.Security;
 using MailSender.Models;
 using MimeKit;
 using System.IO;
@@ -13,7 +14,7 @@ namespace MailSender.Service.Mail
         private readonly static string Name = MailSettings.Name;
         private readonly static string Username = MailSettings.Username;
         private readonly static string Password = MailSettings.Password;
-        private readonly static bool UseSSL = MailSettings.UseSSL;
+        private readonly static SecureSocketOptions SecureSocket = MailSettings.SecureSocket;
 
         public async Task<MailResponse> SendAsync(MailSendRequest request)
         {
@@ -46,7 +47,7 @@ namespace MailSender.Service.Mail
 
 
                 SmtpClient client = new();
-                client.Connect(Host, Port, UseSSL);
+                client.Connect(Host, Port, SecureSocket);
                 client.Authenticate(Username, Password);
                 await client.SendAsync(message);
                 client.Disconnect(true);
