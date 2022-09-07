@@ -32,16 +32,21 @@ namespace MailSender.Service.Mail
 
                 message.Subject = request.Subject;
 
-                BodyBuilder emailBodyBuilder = new()
-                {
-                    TextBody = request.Body
-                };
+                BodyBuilder emailBodyBuilder = new();
 
-                request.Attachments.ForEach(file =>
-                {
-                    string fileName = Path.GetFileName(file.FileName);
-                    emailBodyBuilder.Attachments.Add(fileName, file.OpenReadStream());
-                });
+                if (request.BodyIsHtml)
+                    emailBodyBuilder.HtmlBody = request.Body;
+
+                if (!request.BodyIsHtml)
+                    emailBodyBuilder.TextBody = request.Body;
+
+                if (request.Attachments != null)
+                    request.Attachments.ForEach(file =>
+                    {
+                        string fileName = Path.GetFileName(file.FileName);
+                        emailBodyBuilder.Attachments.Add(fileName, file.OpenReadStream());
+                    });
+
 
                 message.Body = emailBodyBuilder.ToMessageBody();
 
