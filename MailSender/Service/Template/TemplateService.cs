@@ -10,12 +10,13 @@ namespace MailSender.Service.Template
         {
             if (string.IsNullOrEmpty(modelJson)) return Task.FromResult(body);
 
-            var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(modelJson); 
-              
+            var dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(modelJson);
+
             foreach (var property in dict)
             {
-                body = body.Replace("{{" + property.Key + "}}", property.Value ?? "");
-            } 
+                if (property.Value?.GetType() == typeof(string))
+                    body = body.Replace("{{" + property.Key + "}}", property.Value?.ToString() ?? "");
+            }
 
             return Task.FromResult(body);
         }
